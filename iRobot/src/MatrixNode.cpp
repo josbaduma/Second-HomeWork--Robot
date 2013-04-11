@@ -7,48 +7,89 @@
 
 #include "MatrixNode.h"
 
-MatrixNode::MatrixNode(int x, int y, int Red, int Green, int Blue) {
-	this->_posX = x;
-	this->_posY = y;
-	this->_color[0] = Red;
-	this->_color[1] = Green;
-	this->_color[2] = Blue;
-	this->_parent = NULL;
+/*
+ * Constructor de la clase MatrizNode
+ */
+MatrixNode::MatrixNode(int x, int y, int Red, int Green, int Blue)
+{
+	this->_posX = x; //Columna en la matriz
+	this->_posY = y; //Fila en la matriz
+	this->_color[0] = Red; //Color rojo
+	this->_color[1] = Green; //Color verde
+	this->_color[2] = Blue; //Color azul
+	this->_parent = NULL; //Nodo padre
 }
 
-MatrixNode::~MatrixNode() {
-	free(this->_parent);
+/*
+ * Destructor de la clase
+ */
+MatrixNode::~MatrixNode()
+{
+	free(this->_color); //Se libera la memoria del arreglo
+	free(this->_parent); //Se libera la memoria del nodo padre
 }
 
-int MatrixNode::getPosX() const {
+/*
+ * Se obtiene la posicion en la columna de la matriz
+ */
+int MatrixNode::getPosX() const
+{
 	return this->_posX;
 }
 
-void MatrixNode::setPosX(int posX) {
+/*
+ * Se odefine la posicion en la columna de la matriz
+ */
+void MatrixNode::setPosX(int posX)
+{
 	this->_posX = posX;
 }
 
-int MatrixNode::getPosY() const {
+/*
+ * Se obtiene la posicion en la fila de la matriz
+ */
+int MatrixNode::getPosY() const
+{
 	return this->_posY;
 }
 
-void MatrixNode::setPosY(int posY) {
+/*
+ * Se define la posicion en la fila de la matriz
+ */
+void MatrixNode::setPosY(int posY)
+{
 	this->_posY = posY;
 }
 
-int MatrixNode::getWeightOfWay() {
+/*
+ * Obtencion del peso del nodo
+ */
+int MatrixNode::getWeightOfWay()
+{
 	int tmp = (this->_color[0] + this->_color[1] + this->_color[2]);
 	return tmp;
 }
 
-int* MatrixNode::getColor() {
+/*
+ * Se obtiene el arreglo de colores
+ */
+int* MatrixNode::getColor()
+{
 	return this->_color;
 }
 
-void MatrixNode::setParent(MatrixNode* pNode) {
+/*
+ * Se define el padre del nodo actual
+ */
+void MatrixNode::setParent(MatrixNode* pNode)
+{
 	this->_parent = pNode;
 }
 
-MatrixNode* MatrixNode::getParent() {
+/*
+ * Se obtiene el nodo padre del actual nodo
+ */
+MatrixNode* MatrixNode::getParent()
+{
 	return this->_parent;
 }

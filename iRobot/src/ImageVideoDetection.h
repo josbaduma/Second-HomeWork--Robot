@@ -16,7 +16,12 @@
 using namespace std;
 using namespace cv;
 
-class ImageVideoDetection {
+/*
+ *Clase para la deteccion de colores
+ *Muestra una matriz en caso de imagen o video
+ */
+class ImageVideoDetection
+{
 
 private:
 	MatrixNode* *_graph; //Matriz de nodos.
@@ -29,5 +34,6 @@ public:
 	int getColor(int); //Limitador de colores
 	void reconstructImage(int, int); //Reconstrucción de la imagen a partir de la matriz.
 };
+//Fin de la clase
 
 #endif /* IMAGEVIDEODETECTION_H_ */
