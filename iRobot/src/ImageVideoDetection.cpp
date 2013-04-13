@@ -119,8 +119,8 @@ int ImageVideoDetection::getColor(int color)
 void ImageVideoDetection::reconstructImage()
 {
 	cvNamedWindow("Reconstruccion", CV_WINDOW_AUTOSIZE);
-	IplImage* reconst = cvCreateImage(cvSize(this->_lengthX, this->_lengthY), IPL_DEPTH_8U,
-			3); //Se crea la imagen vacía para la reconstrucción
+	IplImage* reconst = cvCreateImage(cvSize(this->_lengthX, this->_lengthY),
+			IPL_DEPTH_8U, 3); //Se crea la imagen vacía para la reconstrucción
 	for (int i = 0; i < this->_lengthY; i++)
 	{ //Ciclo
 		for (int j = 0; j < this->_lengthX; j++)
@@ -138,4 +138,27 @@ void ImageVideoDetection::reconstructImage()
 		}
 	}
 	cvShowImage("Reconstruccion", reconst);
+}
+
+void ImageVideoDetection::printMatrix()
+{
+	for (int i = 0; i < this->_lengthY; ++i)
+	{
+		for (int j = 0; j < this->_lengthX; ++j)
+		{
+			cout << "Fila: "
+					<< this->_graph[j + (i * this->_lengthX)]->getPosY()
+					<< " Columna: "
+					<< this->_graph[j + (i * this->_lengthX)]->getPosX()
+					<< endl;
+			cout << "R: "
+					<< this->_graph[j + (i * this->_lengthX)]->getColor()[0]
+					<< " G: "
+					<< this->_graph[j + (i * this->_lengthX)]->getColor()[1]
+					<< " B: "
+					<< this->_graph[j + (i * this->_lengthX)]->getColor()[2]
+					<< endl;
+		}
+	}
+cout << "Filas: "<<this->_lengthY<<" Columnas: "<<this->_lengthX<<endl;
 }

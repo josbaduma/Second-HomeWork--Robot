@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
 	cout << "Imagen: " << endl;
 	cam->matrixImage(img);
 	cam->reconstructImage();
+	cam->printMatrix();
 	cvWaitKey(100000);
 //	cout << "Video: " << endl;
 //	cam->videoMatrix(0);

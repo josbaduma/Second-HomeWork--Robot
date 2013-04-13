@@ -34,6 +34,7 @@ public:
 	void videoMatrix(int pCamara); //Proceso para obtener una matriz a partir de la camara
 	int getColor(int); //Limitador de colores
 	void reconstructImage(); //Reconstrucción de la imagen a partir de la matriz.
+	void printMatrix();//Imprime la matriz
 };
 //Fin de la clase
 
