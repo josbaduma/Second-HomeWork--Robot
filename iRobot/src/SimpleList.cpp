@@ -99,7 +99,7 @@ void SimpleList<Data>::insertInOrder(const Data& pData)
 	else
 	{
 		SimpleNode<Data>* tmp = this->_head; //Variable temporal
-		while (tmp->getNext() != null && tmp->getNext()->getData() < pData) //Ciclo en busqueda de la posicion a insertar
+		while (tmp->getNext() != NULL && tmp->getNext()->getData() < pData) //Ciclo en busqueda de la posicion a insertar
 		{
 			tmp = tmp->getNext(); //Movimiento de referencia
 		}
@@ -280,7 +280,7 @@ Data SimpleList<Data>::deleteFirst()
 {
 	Data returnData; //Variable temporal del dato
 	SimpleNode<Data>* tmp; //Variable temporal del nodo
-	if (this->_head == null) //Verifica si esta vacia la lista
+	if (this->_head == NULL) //Verifica si esta vacia la lista
 	{
 		return (Data) 0;
 	}

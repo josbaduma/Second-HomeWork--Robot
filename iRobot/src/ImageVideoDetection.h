@@ -25,6 +25,7 @@ class ImageVideoDetection
 
 private:
 	MatrixNode* *_graph; //Matriz de nodos.
+	int _lengthX, _lengthY; //Tamaño de la matriz
 
 public:
 	ImageVideoDetection(); //Constructor
@@ -32,7 +33,7 @@ public:
 	void matrixImage(IplImage* img); //Obtiene la matriz de la imagen dada
 	void videoMatrix(int pCamara); //Proceso para obtener una matriz a partir de la camara
 	int getColor(int); //Limitador de colores
-	void reconstructImage(int, int); //Reconstrucción de la imagen a partir de la matriz.
+	void reconstructImage(); //Reconstrucción de la imagen a partir de la matriz.
 };
 //Fin de la clase
 

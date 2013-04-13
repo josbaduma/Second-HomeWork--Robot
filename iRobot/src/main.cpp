@@ -19,11 +19,11 @@ int main(int argc, char **argv) {
 	IplImage* img = cvLoadImage("image.jpg");
 	cvShowImage("Original", img);
 	cout << "Imagen: " << endl;
-//	cam->matrixImage(img);
-//	cam->reconstructImage(img->width/5, img->height/5);
-//	cvWaitKey(100000);
+	cam->matrixImage(img);
+	cam->reconstructImage();
+	cvWaitKey(100000);
 //	cout << "Video: " << endl;
-	cam->videoMatrix(0);
+//	cam->videoMatrix(0);
 	return 0;
 }
 
