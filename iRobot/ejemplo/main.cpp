@@ -1,6 +1,7 @@
 #include <cv.h>
 #include <highgui.h>
 
+/*
 IplImage* GetThresholdedImage(IplImage*);
 
 using namespace std;
@@ -107,3 +108,4 @@ IplImage * GetThresholdedImage(IplImage * img) {
     cvReleaseImage(&imgHSV);
     return imgThreshed;
 }
+*/

@@ -15,14 +15,14 @@ using namespace std;
 
 int main(int argc, char **argv) {
 	ImageVideoDetection* cam = new ImageVideoDetection();
-//	cvNamedWindow("Original", CV_WINDOW_AUTOSIZE);
-//	IplImage* img = cvLoadImage("image.jpg");
-//	cvShowImage("Original", img);
-//	cout << "Imagen: " << endl;
+	cvNamedWindow("Original", CV_WINDOW_AUTOSIZE);
+	IplImage* img = cvLoadImage("image.jpg");
+	cvShowImage("Original", img);
+	cout << "Imagen: " << endl;
 //	cam->matrixImage(img);
 //	cam->reconstructImage(img->width/5, img->height/5);
 //	cvWaitKey(100000);
-	cout << "Video: " << endl;
+//	cout << "Video: " << endl;
 	cam->videoMatrix(0);
 	return 0;
 }
