@@ -56,17 +56,18 @@ void ImageVideoDetection::videoMatrix(int pCamara)
 {
 	IplImage* frame; //Se define la imagen
 	cvNamedWindow("Color detection", CV_WINDOW_AUTOSIZE); //Se crea la ventana
+	cvNamedWindow("Reconstruccion", CV_WINDOW_AUTOSIZE);
 	CvCapture* capture = cvCaptureFromCAM(pCamara); //Se inicializa la captura de imagenes en la camara.
 	frame = cvQueryFrame(capture); //Se hace una captura inicial
 
 	int input;
-	while ((input = cvWaitKey(10)) != 27)
+	while ((input = cvWaitKey(500)) != 27)
 	{ //Ciclo de capturas de la camara
 		frame = cvQueryFrame(capture); //Se obtiene la imagen a partir de la camara
-
 		cvShowImage("Color detection", frame); //Se muestra en pantalla la captura
 
 		matrixImage(frame); //Se llama a la funcion para que construya la matriz
+		cvShowImage("Reconstruccion", this->reconstructImage());
 	}
 	cvDestroyAllWindows(); // Destruye toda ventana
 	cvReleaseCapture(&capture);
@@ -116,9 +117,8 @@ int ImageVideoDetection::getColor(int color)
 /*
  * Reconstructor de la imagen apartir de la matriz obtenida anteriormente.
  */
-void ImageVideoDetection::reconstructImage()
+IplImage* ImageVideoDetection::reconstructImage()
 {
-	cvNamedWindow("Reconstruccion", CV_WINDOW_AUTOSIZE);
 	IplImage* reconst = cvCreateImage(cvSize(this->_lengthX, this->_lengthY),
 			IPL_DEPTH_8U, 3); //Se crea la imagen vacía para la reconstrucción
 	for (int i = 0; i < this->_lengthY; i++)
@@ -137,7 +137,7 @@ void ImageVideoDetection::reconstructImage()
 					* (this->_graph[j + (i * this->_lengthX)]->getColor()[0]); //Se define el color rojo del pixel
 		}
 	}
-	cvShowImage("Reconstruccion", reconst);
+	return reconst;
 }
 
 void ImageVideoDetection::printMatrix()
@@ -160,5 +160,6 @@ void ImageVideoDetection::printMatrix()
 					<< endl;
 		}
 	}
-cout << "Filas: "<<this->_lengthY<<" Columnas: "<<this->_lengthX<<endl;
+	cout << "Filas: " << this->_lengthY << " Columnas: " << this->_lengthX
+			<< endl;
 }
