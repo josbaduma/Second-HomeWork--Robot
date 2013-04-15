@@ -36,14 +36,14 @@ int main(int argc, char **argv)
 	}
 
 	MatrixNode* start = matriz[0 + (0 * LENGHTX)];
-	MatrixNode* goal = matriz[17 + (12 * LENGHTX)];
+	MatrixNode* goal = matriz[19 + (11 * LENGHTX)];
 
 	PathFinding* pathfinding = new PathFinding(matriz, LENGHTX, LENGHTY);
 
 	cout << "Ejecutando" << endl;
 
-	//SimpleList<MatrixNode*> * list = pathfinding->DistanceFirstSearch(start, goal);
-	SimpleList<MatrixNode*> * list = pathfinding->AlgoritmInvented(start,goal);
+	SimpleList<MatrixNode*> * list = pathfinding->DistanceFirstSearch(start, goal);
+//	SimpleList<MatrixNode*> * list = pathfinding->AlgoritmInvented(start,goal);
 
 	cout << list->length() << endl;
 	int tmp = list->length();

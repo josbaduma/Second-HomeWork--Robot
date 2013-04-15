@@ -225,7 +225,7 @@ SimpleList<MatrixNode*>* PathFinding::AlgoritmInvented(MatrixNode* pStart,Matrix
 							continue;
 						}
 						//Verificar y descartar si este nodo tiene un peso infinito
-						if (this->_graph[j + (i * this->_lengthX)]->getWeightOfWay()
+						if (this->_graph[i + (j * this->_lengthX)]->getWeightOfWay()
 								== 0)
 						{
 							continue;
@@ -243,7 +243,7 @@ SimpleList<MatrixNode*>* PathFinding::AlgoritmInvented(MatrixNode* pStart,Matrix
 				} //Fin del ciclo de busqueda de nodos adyacentes
 			} //Fin del ciclo de busqueda de caminos
 
-			return _visited;
+			return this->reconstructWay(_visited, pStart);
 }
 
 
