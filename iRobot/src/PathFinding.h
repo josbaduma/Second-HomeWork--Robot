@@ -35,7 +35,8 @@ public:
 
 	SimpleList<MatrixNode*>* BreadthFirstSearch(MatrixNode*, MatrixNode*); //Algoritmo de recorrido en anchura
 
-	SimpleList<MatrixNode*>* DistanceFirstSearch(MatrixNode*, MatrixNode*); //Algoritmo de recorrido en distancia
+	SimpleList<MatrixNode*>* DistanceFirstSearch(MatrixNode*, MatrixNode*);//Algoritmo de recorrido en distancia
+	SimpleList<MatrixNode*>* AlgoritmInvented(MatrixNode*, MatrixNode*);
 
 	SimpleList<MatrixNode*>* RandomBounce(MatrixNode*, MatrixNode*); //Algoritmo de busqueda de camino random
 	int getRandom(int, int); //Funcion random

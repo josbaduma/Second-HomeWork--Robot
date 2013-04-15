@@ -184,6 +184,68 @@ SimpleList<MatrixNode*>* PathFinding::BreadthFirstSearch(MatrixNode* pStart,
 	}
 	return this->reconstructWay(_vistedList, pStart); //Retornar la lista de nodos visitados
 }
+/**
+ Funcion de busqueda de caminos mediante sus caminos de adyacencia,randoms y peso.
+ @param StartNode, GoalNode
+ */
+SimpleList<MatrixNode*>* PathFinding::AlgoritmInvented(MatrixNode* pStart,MatrixNode* pGoal){
+	//Inicializacion de la pila de nodos.
+		ListStack<MatrixNode*>* _stack = new ListStack<MatrixNode*>();
+		//Inicializacion de lista de nodos visitados
+		SimpleList<MatrixNode*>* _visited = new SimpleList<MatrixNode*>();
+		//Se inserta el nodo inicial en la pila
+			_stack->push(pStart);
+
+			//Ciclo de busqueda del camino
+			while (!_stack->isEmpty())
+			{
+				//Se saca el primer nodo de la pila como temporal
+				MatrixNode* tmp = _stack->pop();
+
+				//verificar que se el nodo final
+				if (tmp == pGoal)
+				{
+					//Se inserta el temporal en la lista de visitados
+					_visited->insertFinal(tmp);
+					break; //Salir del ciclo
+				}
+
+				//Se inserta el nodo temporal a la lista de nodos visitados
+				_visited->insertFinal(tmp);
+
+				//Busqueda de nodos adyacentes al nodo temporal
+				for (int i = tmp->getPosY() - 1; i <= tmp->getPosY() + 1; ++i)
+				{
+					for (int j = tmp->getPosX() - 1; j <= tmp->getPosX() + 1; ++j)
+					{
+						//Verificar que se encuentra dentro de la matriz
+						if (i < 0 || j < 0 || i >= this->_lengthY
+								|| j >= this->_lengthX)
+						{
+							continue;
+						}
+						//Verificar y descartar si este nodo tiene un peso infinito
+						if (this->_graph[j + (i * this->_lengthX)]->getWeightOfWay()
+								== 0)
+						{
+							continue;
+						}
+						// Buscar si este nodo adyacente ya se encuentra en la lista y pila.
+						else if (!_visited->search(
+								this->_graph[i + (j * this->_lengthX)]))
+						{
+							//Definimos el padre del nodo adyacente
+							this->_graph[i + (j * this->_lengthX)]->setParent(tmp);
+							//Insertamos el nodo adyacente a la pila
+							_stack->push(this->_graph[i + (j * this->_lengthX)]);
+						}
+					}
+				} //Fin del ciclo de busqueda de nodos adyacentes
+			} //Fin del ciclo de busqueda de caminos
+
+			return _visited;
+}
+
 
 /**
  Funcion de busqueda de caminos mediante el recorrido en profuncidad o distancia.

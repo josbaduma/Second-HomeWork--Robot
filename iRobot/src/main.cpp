@@ -42,7 +42,8 @@ int main(int argc, char **argv)
 
 	cout << "Ejecutando" << endl;
 
-	SimpleList<MatrixNode*> * list = pathfinding->DistanceFirstSearch(start, goal);
+	//SimpleList<MatrixNode*> * list = pathfinding->DistanceFirstSearch(start, goal);
+	SimpleList<MatrixNode*> * list = pathfinding->AlgoritmInvented(start,goal);
 
 	cout << list->length() << endl;
 	int tmp = list->length();

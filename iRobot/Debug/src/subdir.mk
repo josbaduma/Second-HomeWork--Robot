@@ -5,8 +5,10 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/ImageVideoDetection.cpp \
+../src/Individual.cpp \
 ../src/ListQueue.cpp \
 ../src/ListStack.cpp \
+../src/MainThreads.cpp \
 ../src/MatrixNode.cpp \
 ../src/PathFinding.cpp \
 ../src/SimpleList.cpp \
@@ -15,8 +17,10 @@ CPP_SRCS += \
 
 OBJS += \
 ./src/ImageVideoDetection.o \
+./src/Individual.o \
 ./src/ListQueue.o \
 ./src/ListStack.o \
+./src/MainThreads.o \
 ./src/MatrixNode.o \
 ./src/PathFinding.o \
 ./src/SimpleList.o \
@@ -25,8 +29,10 @@ OBJS += \
 
 CPP_DEPS += \
 ./src/ImageVideoDetection.d \
+./src/Individual.d \
 ./src/ListQueue.d \
 ./src/ListStack.d \
+./src/MainThreads.d \
 ./src/MatrixNode.d \
 ./src/PathFinding.d \
 ./src/SimpleList.d \
