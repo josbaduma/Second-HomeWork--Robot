@@ -31,6 +31,7 @@ public:
 
 	SimpleList<MatrixNode*>* AStar(MatrixNode*, MatrixNode*); // Busqueda de camino Algoritmo A*
 	int h(MatrixNode*, MatrixNode*); //Funcion heuristica
+	int g(MatrixNode*);
 
 	SimpleList<MatrixNode*>* BreadthFirstSearch(MatrixNode*, MatrixNode*); //Algoritmo de recorrido en anchura
 

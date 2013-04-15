@@ -12,7 +12,7 @@
  */
 MainThreads::MainThreads()
 {
-	this->_mainThread = 0;
+	this->_mainThread = NULL;
 }
 
 /**
@@ -29,6 +29,7 @@ MainThreads::~MainThreads()
  */
 void* MainThreads::functionThread(void* var)
 {
+	std::cout << "Ejecutando" << std::endl;
 	reinterpret_cast<MainThreads*>(var)->fThread();
 	return 0;
 }
@@ -39,7 +40,31 @@ void* MainThreads::functionThread(void* var)
  */
 void MainThreads::fThread()
 {
+	std::cout << "Creando ventana" << std::endl;
+	cvNamedWindow("Ejemplo", CV_WINDOW_AUTOSIZE);
+	IplImage* imgOriginal = cvLoadImage("image.jpg");
+	IplImage* copyImage = cvCloneImage(imgOriginal);
 
+	CvRect box;
+	box.x = 5;
+	box.y = 5;
+
+	for (int i = 5; i < imgOriginal->height - 5; i += 5)
+	{
+		for (int j = 5; j < imgOriginal->width - 5; j += 5)
+		{
+			cvShowImage("Ejemplo", copyImage);
+			copyImage = cvCloneImage(imgOriginal);
+			cvRectangle(copyImage, cvPoint(box.x, box.y),
+					cvPoint(box.x + 5, box.y + 5), cvScalar(210, 31, 16));
+			box.x = i, box.y = 5;
+			usleep(1000);
+		}
+
+	}
+	cvReleaseImage(&copyImage);
+	cvReleaseImage(&imgOriginal);
+	cvDestroyAllWindows();
 }
 
 /**
@@ -47,5 +72,5 @@ void MainThreads::fThread()
  */
 void MainThreads::start()
 {
-	pthread_create(this->_mainThread, 0, MainThreads::functionThread, this);
+	pthread_create(this->_mainThread, NULL, MainThreads::functionThread, this);
 }

@@ -7,8 +7,11 @@
 
 #ifndef MAINTHREADS_H_
 #define MAINTHREADS_H_
-#include "pthread.h"
+#include <pthread.h>
 #include <stdlib.h>
+#include <highgui.h>
+#include <cv.h>
+#include <unistd.h>
 
 /**
  * Clase principal para el funcionamiento de los movientos de los individuos,

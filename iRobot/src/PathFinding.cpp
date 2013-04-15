@@ -40,13 +40,13 @@ SimpleList<MatrixNode*>* PathFinding::AStar(MatrixNode* pStart,
 
 	while (!_openList->isEmpty()) //Inicio de ciclo para encontrar el camino más corto
 	{
-
+		std::cout << _openList->length() << std::endl;
 		MatrixNode* current = _openList->get(0); //Se obtiene el primer nodo
 		for (int i = 0; i < _openList->length(); ++i) //Busqueda del nodo con la menor funcion heuristica
 		{
 			MatrixNode* tmp = _openList->get(i);
-			int F1 = this->h(current, pGoal);
-			int F2 = this->h(tmp, pGoal);
+			int F1 = this->h(current, pGoal) + this->g(current);
+			int F2 = this->h(tmp, pGoal) + this->g(tmp);
 			if (F1 > F2)
 			{
 				current = tmp;
@@ -97,7 +97,7 @@ SimpleList<MatrixNode*>* PathFinding::AStar(MatrixNode* pStart,
 		}
 
 	} //Fin del ciclo
-	return _closeList; //Devolver la lista de con el camino
+	return this->reconstructWay(_closeList, pStart); //Devolver la lista de con el camino
 }
 
 /*
@@ -110,6 +110,17 @@ int PathFinding::h(MatrixNode* pNode, MatrixNode* pGoal)
 	int result = D * abs(pNode->getPosX() - pGoal->getPosX())
 			+ abs(pNode->getPosY() - pGoal->getPosY()); //Se realiza el calculo de la funcion manhatan
 	return result; //Se devuelve el valor del camino.
+}
+
+int PathFinding::g(MatrixNode* pNode)
+{
+	int tmp = 0;
+	if (pNode->getParent() == NULL)
+	{
+		return tmp;
+	}
+	tmp = 1 + (this->g(pNode->getParent()) - 1);
+	return tmp;
 }
 
 /*
@@ -171,7 +182,7 @@ SimpleList<MatrixNode*>* PathFinding::BreadthFirstSearch(MatrixNode* pStart,
 			}
 		} //Fin del ciclo de busqueda del camino
 	}
-	return _vistedList; //Retornar la lista de nodos visitados
+	return this->reconstructWay(_vistedList, pStart); //Retornar la lista de nodos visitados
 }
 
 /**
@@ -237,7 +248,7 @@ SimpleList<MatrixNode*>* PathFinding::DistanceFirstSearch(MatrixNode* pStart,
 		} //Fin del ciclo de busqueda de nodos adyacentes
 	} //Fin del ciclo de busqueda de caminos
 
-	return _visited; //Devolver la lista de nodos vistados
+	return this->reconstructWay(_visited, pStart); //Devolver la lista de nodos vistados
 }
 
 /*
@@ -385,5 +396,6 @@ SimpleList<MatrixNode*>* PathFinding::reconstructWay(
 		current = current->getParent(); //Se obtiene el nodo padre
 	}
 	tmpList->insertFinal(pStart); //Se inserta el nodo inicial
+	free(pList);//Libera la memoria de lista
 	return tmpList; //Se devuelve la lista temporal
 }
